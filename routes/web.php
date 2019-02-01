@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix'=>'admin'], function ()
+{
+    Route::group(['prefix'=>'cate'], function ()
+    {
+        Route::get('list', ['as'=>'admin.cate.list',
+            'uses'=>'admin\CategoryController@getList']);
+        Route::get('add', ['as'=>'admin.cate.getAdd',
+            'uses'=>'admin\CategoryController@getAdd']);
+        Route::post('add', ['as'=>'admin.cate.postAdd',
+            'uses'=>'admin\CategoryController@postAdd']);
+    });
+});
